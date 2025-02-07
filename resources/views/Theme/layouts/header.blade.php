@@ -39,10 +39,28 @@
                         <!-- Add new blog -->
                         <a href="#" class="btn btn-sm btn-primary mr-2">Add New</a>
                         <!-- End - Add new blog -->
+                        @if (Auth::check())
+                            <ul class="nav navbar-nav navbar-right navbar-social">
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true"
+                                        aria-expanded="false">{{ Auth::user()->name }}</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="#">My Blogs</a></li>
+                                        <li class="nav-item">
+                                            <form action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                <a class="nav-link" href="javascript:$('form').submit();">Log Out</a>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        @else
+                            <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register / Login</a>
+                        @endif
 
-                        <ul class="nav navbar-nav navbar-right navbar-social">
-                            <a href="{{ route('theme.register') }}" class="btn btn-sm btn-warning">Register / Login</a>
-                        </ul>
+
                     </div>
                 </div>
             </nav>
