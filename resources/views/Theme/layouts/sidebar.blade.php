@@ -35,6 +35,7 @@
                             <a href="{{ route('theme.category', ['id' => $sidebarCategory->id]) }}"
                                 class="d-flex justify-content-between">
                                 <p>{{ $sidebarCategory->name }}</p>
+                                {{-- <h4>{{ count($) }}</h4> --}}
                             </a>
                         </li>
                     @endforeach

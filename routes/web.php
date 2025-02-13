@@ -32,6 +32,8 @@ Route::post('/contact/store', [ContactController::class, 'store'])->name('contac
 Route::get('/my-blogs', [BlogController::class, 'myBlogs'])->name('blogs.my-blogs');
 Route::resource('blogs', BlogController::class);
 
+Route::post('/comments/store', [CommentController::class, 'store'])->name('comments.store');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
