@@ -28,7 +28,7 @@
                                 @if (count($headerCategories) > 0)
                                     @foreach ($headerCategories as $headerCategory)
                                         <li class="nav-item"><a class="nav-link"
-                                                href="{{ route('theme.singleBlog') }}">{{ $headerCategory->name }}</a>
+                                                href="{{ route('theme.category', ['id' => $headerCategory->id]) }}">{{ $headerCategory->name }}</a>
                                         </li>
                                     @endforeach
                                 @endif
@@ -39,7 +39,9 @@
                         </li>
                     </ul>
                     <!-- Add new blog -->
-                    <a href="#" class="btn btn-sm btn-primary mr-2">Add New</a>
+                    {{-- @if (Auth::check()) --}}
+                    <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary mr-2">Add New</a>
+                    {{-- @endif --}}
                     <!-- End - Add new blog -->
                     @if (Auth::check())
                         <ul class="nav navbar-nav navbar-right navbar-social">
@@ -47,11 +49,13 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="#">My Blogs</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('blogs.my-blogs') }}">My
+                                            Blogs</a></li>
                                     <li class="nav-item">
-                                        <form action="{{ route('logout') }}" method="post">
+                                        <form action="{{ route('logout') }}" id="logout-form" method="post">
                                             @csrf
-                                            <a class="nav-link" href="javascript:$('form').submit();">Log Out</a>
+                                            <a class="nav-link" href="javascript:$('form#logout-form').submit();">Log
+                                                Out</a>
                                         </form>
                                     </li>
                                 </ul>

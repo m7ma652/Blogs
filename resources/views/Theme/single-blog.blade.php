@@ -6,23 +6,23 @@
     active
 @endsection
 @section('content')
-    @include('Theme.layouts.hero', ['title' => 'Blog details'])
+    @include('Theme.layouts.hero', ['title' => $blog->name])
     <!--================ Start Blog Post Area =================-->
     <section class="blog-post-area section-margin">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="main_blog_details">
-                        <img class="img-fluid" src="{{ asset('assets') }}/img/blog/blog4.png" alt="">
+                        <img class="img-fluid" src="{{ asset("storage/blogs/$blog->image") }}" alt="">
                         <a href="#">
-                            <h4>Cartridge Is Better Than Ever <br /> A Discount Toner</h4>
+                            <h4>{{ $blog->name }}</h4>
                         </a>
                         <div class="user_details">
                             <div class="float-right mt-sm-0 mt-3">
                                 <div class="media">
                                     <div class="media-body">
-                                        <h5>Mark wiens</h5>
-                                        <p>12 Dec, 2017 11:21 am</p>
+                                        <h5>{{ $blog->user->name }}</h5>
+                                        <p>{{ $blog->created_at }}</p>
                                     </div>
                                     <div class="d-flex">
                                         <img width="42" height="42" src="{{ asset('assets') }}/img/avatar.png"
@@ -31,20 +31,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself
-                            at a fraction of the camp price. However, who has the willpower</p>
-                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself
-                            at a fraction of the camp price. However, who has the willpower to actually sit through a
-                            self-imposed MCSE training. who has the willpower to actually sit through a self-imposed
-                            MCSE training.</p>
-                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself
-                            at a fraction of the camp price. However, who has the willpower</p>
-                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself
-                            at a fraction of the camp price. However, who has the willpower</p>
+                        <p>{{$blog->description}}</p>
                     </div>
 
                     <div class="comments-area">

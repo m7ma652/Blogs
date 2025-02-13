@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ThemeController extends Controller
 {
     public function index()
     {
-        return view('theme.index');
+        $blogs = Blog::paginate(3);
+        return view('theme.index', compact('blogs'));
     }
-    public function category()
+    public function category($id)
     {
-        return view('theme.category');
+        $categoryName = Category::find($id)->name;
+        $blogs = Blog::where('category_id', $id)->paginate(8);
+        return view('theme.category', compact('blogs', 'categoryName'));
     }
     public function contact()
     {
         return view('theme.contact');
-    }
-    public function singleBlog()
-    {
-        return view('theme.single-blog');
     }
 }
