@@ -39,9 +39,9 @@
                         </li>
                     </ul>
                     <!-- Add new blog -->
-                    {{-- @if (Auth::check()) --}}
-                    <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary mr-2">Add New</a>
-                    {{-- @endif --}}
+                    @if (Auth::check())
+                        <a href="{{ route('blogs.create') }}" class="btn btn-sm btn-primary mr-2">Add New</a>
+                    @endif
                     <!-- End - Add new blog -->
                     @if (Auth::check())
                         <ul class="nav navbar-nav navbar-right navbar-social">

@@ -11,7 +11,6 @@ class CommentController extends Controller
     public function store(CommentRequest $request)
     {
         $data = $request->validated();
-        // dd($data);
         Comment::create($data);
         return back();
     }

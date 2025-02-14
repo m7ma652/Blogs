@@ -12,31 +12,17 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth')->only(['create']);
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        // if (Auth::check()) {
-        $categories = Category::get();
-        return view('Theme.blogs.create', compact('categories'));
-        // } else {
-        //     abort(403);
-        // }
+        if (Auth::check()) {
+            $categories = Category::get();
+            return view('Theme.blogs.create', compact('categories'));
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -116,6 +102,8 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         if (Auth::user()->id == $blog->user_id) {
+            // حذف كل التعليقات المرتبطة بهذا الـ Blog
+            $blog->comments()->delete();
             // 0- delete the old image
             Storage::delete("public/blogs/$blog->image");
             $blog->delete();
